@@ -1,0 +1,30 @@
+trigger:
+– main
+
+pool:
+vmImage: ubuntu-latest
+
+variables:
+phpVersion: ‘8.3’
+
+jobs:
+– deployment: VMDeploy
+displayName: Web deploy
+environment:
+name: ‘demo’ 
+resourceType: VirtualMachine 
+resourceName: ‘laravel’ 
+strategy:
+runOnce:
+deploy:
+steps:
+– script: |
+sudo bash -c 
+cd /home/laraveluser/quickstart-basic
+git pull
+apt update 
+composer install
+php artisan migrate 
+php artisan serve 
+
+displayName: ‘Continuous Integration and Deployment’ 
