@@ -19,5 +19,5 @@ jobs:
         deploy:
           steps:
             - script: |
-                sudo bash -c 'cd /home/laraveluser/quickstart-basic && git pull && apt update && composer install && php artisan migrate && php artisan serve'
+                sudo bash -c 'cd /home/laraveluser/quickstart-basic && git pull && apt update && composer install && php artisan migrate && php artisan serve --port=8000 --host 0.0.0.0'
               displayName: 'Continuous Integration and Deployment'
